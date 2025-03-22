@@ -267,3 +267,138 @@ with st.expander('Wisata Buatan'):
     else:
         st.warning("Pilih Kabupaten, Kecamatan, dan Tahun terlebih dahulu.")
         
+# Potensi Bencana     
+with st.expander('Potensi Bencana'):    
+    if kabterpilih and kecterpilih and tahunterpilih:
+        url = f'https://portaldatadesa.jabarprov.go.id/api/idm/idmdataidentitas/v2?sub_name=Potensi%20Bencana&tahun={tahunterpilih}&page=1&limit=100&order=asc&orderby=id_desa&id_kabupaten={kabterpilih}&id_kecamatan={kecterpilih}'
+        response = requests.get(url)
+        data = response.json()
+        
+        # Ekstrak data dan identifikasi ID
+        extracted_data = []
+        for item_list in data['data']:
+            for item in item_list:
+                extracted_data.append({
+                    'indikator_db': item['indikator_db'],
+                    'perangkat_indikator_2': item['perangkat_indikator_2'],
+                    'value': item['value']
+                })
+
+        # Proses data per item_list (desa)
+        for item_list in data['data']:
+            # Ekstrak ID Desa
+            id_desa = None
+            extracted_data = []
+            for item in item_list:
+                if item['indikator_db'] == 'id':  # Asumsikan 'id' adalah ID Desa
+                    id_desa = item['value']
+                extracted_data.append({
+                    'indikator_db': item['indikator_db'],
+                    'perangkat_indikator_2': item['perangkat_indikator_2'],
+                    'value': item['value']
+                })
+
+            # Buat DataFrame untuk desa ini
+            df_desa = pd.DataFrame(extracted_data)
+
+            # Tampilkan DataFrame dengan judul ID Desa
+            if id_desa is not None:
+                st.subheader(f"Data untuk ID Desa: {id_desa}")
+                st.dataframe(df_desa, hide_index=True, use_container_width=True)
+                st.subheader("", divider='green')
+            else:
+                st.warning("ID Desa tidak ditemukan untuk item ini.")
+
+    else:
+        st.warning("Pilih Kabupaten, Kecamatan, dan Tahun terlebih dahulu.")
+        
+# Kondisi Lingkungan     
+with st.expander('Kondisi Lingkungan'):    
+    if kabterpilih and kecterpilih and tahunterpilih:
+        url = f'https://portaldatadesa.jabarprov.go.id/api/idm/idmdataidentitas/v2?sub_name=Kondisi%20Linkungan&tahun={tahunterpilih}&page=1&limit=100&order=asc&orderby=id_desa&id_kabupaten={kabterpilih}&id_kecamatan={kecterpilih}'
+        response = requests.get(url)
+        data = response.json()
+        
+        # Ekstrak data dan identifikasi ID
+        extracted_data = []
+        for item_list in data['data']:
+            for item in item_list:
+                extracted_data.append({
+                    'indikator_db': item['indikator_db'],
+                    'perangkat_indikator_2': item['perangkat_indikator_2'],
+                    'value': item['value']
+                })
+
+        # Proses data per item_list (desa)
+        for item_list in data['data']:
+            # Ekstrak ID Desa
+            id_desa = None
+            extracted_data = []
+            for item in item_list:
+                if item['indikator_db'] == 'id':  # Asumsikan 'id' adalah ID Desa
+                    id_desa = item['value']
+                extracted_data.append({
+                    'indikator_db': item['indikator_db'],
+                    'perangkat_indikator_2': item['perangkat_indikator_2'],
+                    'value': item['value']
+                })
+
+            # Buat DataFrame untuk desa ini
+            df_desa = pd.DataFrame(extracted_data)
+
+            # Tampilkan DataFrame dengan judul ID Desa
+            if id_desa is not None:
+                st.subheader(f"Data untuk ID Desa: {id_desa}")
+                st.dataframe(df_desa, hide_index=True, use_container_width=True)
+                st.subheader("", divider='green')
+            else:
+                st.warning("ID Desa tidak ditemukan untuk item ini.")
+
+    else:
+        st.warning("Pilih Kabupaten, Kecamatan, dan Tahun terlebih dahulu.")
+        
+# Data Topografi     
+with st.expander('Data Topografi'):    
+    if kabterpilih and kecterpilih and tahunterpilih:
+        url = f'https://portaldatadesa.jabarprov.go.id/api/idm/idmdataidentitas/v2?sub_name=Data%20Topografi&tahun={tahunterpilih}&page=1&limit=100&order=asc&orderby=id_desa&id_kabupaten={kabterpilih}&id_kecamatan={kecterpilih}'
+        response = requests.get(url)
+        data = response.json()
+        
+        # Ekstrak data dan identifikasi ID
+        extracted_data = []
+        for item_list in data['data']:
+            for item in item_list:
+                extracted_data.append({
+                    'indikator_db': item['indikator_db'],
+                    'perangkat_indikator_2': item['perangkat_indikator_2'],
+                    'value': item['value']
+                })
+
+        # Proses data per item_list (desa)
+        for item_list in data['data']:
+            # Ekstrak ID Desa
+            id_desa = None
+            extracted_data = []
+            for item in item_list:
+                if item['indikator_db'] == 'id':  # Asumsikan 'id' adalah ID Desa
+                    id_desa = item['value']
+                extracted_data.append({
+                    'indikator_db': item['indikator_db'],
+                    'perangkat_indikator_2': item['perangkat_indikator_2'],
+                    'value': item['value']
+                })
+
+            # Buat DataFrame untuk desa ini
+            df_desa = pd.DataFrame(extracted_data)
+
+            # Tampilkan DataFrame dengan judul ID Desa
+            if id_desa is not None:
+                st.subheader(f"Data untuk ID Desa: {id_desa}")
+                st.dataframe(df_desa, hide_index=True, use_container_width=True)
+                st.subheader("", divider='green')
+            else:
+                st.warning("ID Desa tidak ditemukan untuk item ini.")
+
+    else:
+        st.warning("Pilih Kabupaten, Kecamatan, dan Tahun terlebih dahulu.")
+        
